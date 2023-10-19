@@ -85,7 +85,7 @@ nvim_tree.setup({
 			diagnostics_placement = "signcolumn",
 			bookmarks_placement = "signcolumn",
 			padding = " ",
-			symlink_arrow = " ➛ ",
+			symlink_arrow = "",
 			show = {
 				file = true,
 				folder = true,
@@ -111,11 +111,11 @@ nvim_tree.setup({
 					symlink_open = "",
 				},
 				git = {
-					unstaged = "✗",
-					staged = "✓",
+					unstaged = "󰰏",
+					staged = "󰯫",
 					unmerged = "",
 					renamed = "➜",
-					untracked = "★",
+					untracked = "",
 					deleted = "",
 					ignored = "",
 				},
