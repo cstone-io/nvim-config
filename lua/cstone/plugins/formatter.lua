@@ -39,6 +39,16 @@ require("formatter").setup({
 			end,
 		},
 
+		c = {
+			function()
+				return {
+					exe = "clang-format",
+					args = { "-i", "--style=Google" }, -- You can change "--style=Google" to another preset or provide a .clang-format file
+					stdin = false,
+				}
+			end,
+		},
+
 		html = {
 			require("formatter.filetypes.html").prettier,
 			function()

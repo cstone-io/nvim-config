@@ -7,6 +7,7 @@ local servers = {
 	"bashls",
 	"jsonls",
 	"yamlls",
+	"clangd",
 }
 
 local settings = {
@@ -35,9 +36,9 @@ end
 
 local opts = {}
 
-local handlers = require('cstone.lsp.handlers')
+local handlers = require("cstone.lsp.handlers")
 if not handlers.on_attach or not handlers.capabilities then
-    return
+	return
 end
 
 for _, server in pairs(servers) do
