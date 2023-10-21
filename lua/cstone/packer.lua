@@ -97,8 +97,10 @@ return packer.startup(function(use)
 	use("nvim-treesitter/playground")
 	use("mbbill/undotree")
 
-	-- Search
+	-- Search / replace
 	use("roobert/search-replace.nvim")
+	use("kevinhwang91/nvim-hlslens")
+	use("kevinhwang91/nvim-ufo")
 
 	-- Comment
 	use("numToStr/Comment.nvim")
