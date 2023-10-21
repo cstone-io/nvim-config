@@ -59,6 +59,11 @@ devicons.setup({
 			color = "#b553db",
 			name = "Yaml",
 		},
+		bak = {
+			icon = "󰁯",
+			color = "#ccccb4",
+			name = "Backup",
+		},
 	},
 	color_icons = true,
 	default = true,
