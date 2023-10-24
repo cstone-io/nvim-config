@@ -9,4 +9,5 @@ end
 
 req("mason")
 req("handlers")
+req("keymap")
 req("python")
