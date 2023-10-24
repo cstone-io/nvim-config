@@ -17,6 +17,8 @@ local function get_custom_ext(name)
 		return "dockerfile"
 	elseif name:find("^.env%..*$") then
 		return "envfile"
+	elseif name:find("^CMake") or name:find("%.cmake$") or name == "Makefile" then
+		return "cmake"
 	elseif name:find("^.+%.yaml$") or name:find("^.+%.yml$") then
 		return "yaml"
 	end
@@ -64,6 +66,16 @@ devicons.setup({
 			color = "#ccccb4",
 			name = "Backup",
 		},
+		glsl = {
+			icon = "󰯿",
+			color = "#75bf7b",
+			name = "OpenGL",
+		},
+		cmake = {
+			icon = "",
+			color = "#e0db75",
+			name = "CMake",
+		},
 	},
 	color_icons = true,
 	default = true,
@@ -78,6 +90,11 @@ devicons.setup({
 			icon = "",
 			color = "#0427c4",
 			name = "Gitmodules",
+		},
+		[".clangd"] = {
+			icon = "",
+			color = "#99b8c7",
+			name = "Clangfile",
 		},
 	},
 })
