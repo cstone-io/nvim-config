@@ -3,98 +3,156 @@ if not status_ok then
 	return
 end
 
-local original_get_icon = devicons.get_icon
+local colors = {
+	teal = "#33a8c7",
+	turquoise = "#52e3e1",
+	lime = "#a0e426",
+	lemon = "#fdf148",
+	orange = "#ffab00",
+	salmon = "#f77976",
+	magenta = "#f050ae",
+	lilac = "#d883ff",
+	lavender = "#9336fd",
+	quartz = "#f8f9fa",
+	marble = "#dee2e6",
+	slate = "#adb5bd",
+}
 
-local function get_custom_ext(name)
-	if
-		name:match("^docker%-compose%.yml$")
-		or name:match("^docker%-compose%.yaml$")
-		or name:match("^docker%-compose%..+%.yml$")
-		or name:match("^docker%-compose%..+%.yaml$")
-	then
-		return "dockercompose"
-	elseif name:find("^Dockerfile%..*$") then
-		return "dockerfile"
-	elseif name:find("^.env%..*$") then
-		return "envfile"
-	elseif name:find("^CMake") or name:find("%.cmake$") or name == "Makefile" then
-		return "cmake"
-	elseif name:find("^.+%.yaml$") or name:find("^.+%.yml$") then
-		return "yaml"
+local custom_patterns = {
+	first_priority = {
+		cmake = {
+			patterns = { "^CMakeLists%.txt$", "^.*%.cmake$", "^Makefile$" },
+			icon = "",
+			color = colors.lemon,
+			name = "CMake",
+		},
+		dockercompose = {
+			patterns = {
+				"^docker%-compose%.yml$",
+				"^docker%-compose%.yaml$",
+				"^docker%-compose%..*%.yml$",
+				"^docker%-compose%..*%.yaml$",
+			},
+			icon = "󰡨",
+			color = colors.magenta,
+			name = "DockerCompose",
+		},
+		git = {
+			patterns = { "^%.gitignore$", "^%.gitmodules$" },
+			icon = "",
+			color = colors.orange,
+			name = "Gitignore",
+		},
+		readme = {
+			patterns = { "^README%.md$" },
+			icon = "",
+			color = colors.lilac,
+			name = "README",
+		},
+		requirements = {
+			patterns = { "^requirements%.txt$", "^package%.json$" },
+			icon = "",
+			color = colors.salmon,
+			name = "Requirements",
+		},
+	},
+	second_priority = {
+		bak = {
+			patterns = { "^.*%.bak$" },
+			icon = "󰁯",
+			color = colors.slate,
+			name = "Backup",
+		},
+		bash = {
+			patterns = { "^.+%.sh$" },
+			icon = "",
+			color = colors.marble,
+			name = "Zsh",
+		},
+		clang = {
+			patterns = { "^%.clang.*$" },
+			icon = "",
+			color = colors.turquoise,
+			name = "Clangfile",
+		},
+		dockerfile = {
+			patterns = { "^Dockerfile.*$" },
+			icon = "󰡨",
+			color = colors.teal,
+			name = "Dockerfile",
+		},
+		dotenv = {
+			patterns = { "^%.env.*$" },
+			icon = "",
+			color = colors.lime,
+			name = "Environment",
+		},
+		glsl = {
+			patterns = { "^.*%.glsl$" },
+			icon = "󰯿",
+			color = colors.lemon,
+			name = "OpenGL",
+		},
+		log = {
+			patterns = { "^.*%.log$" },
+			icon = "",
+			color = colors.marble,
+			name = "Log",
+		},
+		pem = {
+			patterns = { "^.*%.pem$" },
+			icon = "󰌆",
+			color = colors.lemon,
+			name = "Pemkey",
+		},
+		yaml = {
+			patterns = { "^.*%.yaml$", "^.*%.yml$" },
+			icon = "",
+			color = colors.lavender,
+			name = "Yaml",
+		},
+	},
+}
+
+for _, priority_tier in pairs(custom_patterns) do
+	for name, data in pairs(priority_tier) do
+		local entry = {}
+		entry[name] = {
+			icon = data.icon,
+			color = data.color,
+			name = data.name,
+		}
+		devicons.set_icon(entry)
 	end
-	return name:match("^.*%.(.*)$") or ""
 end
 
+local function get_custom_pattern(name)
+	for _, priority_tier in pairs(custom_patterns) do
+		for _, data in pairs(priority_tier) do
+			for _, pattern in pairs(data.patterns) do
+				if name:find(pattern) then
+					return data
+				end
+			end
+		end
+	end
+	return nil
+end
+
+local original_get_icon = devicons.get_icon
+
 devicons.get_icon = function(name, ext, opts)
-	return original_get_icon(name, get_custom_ext(name) or ext, opts)
+	local match = get_custom_pattern(name)
+	if match then
+		return match.icon, "DevIcon" .. match.name
+	end
+	return original_get_icon(name, ext, opts)
 end
 
 devicons.setup({
-	override = {
-		sh = {
-			icon = "",
-			color = "#31e04f",
-			name = "Zsh",
-		},
-		dockercompose = {
-			icon = "󰡨",
-			color = "#c76363",
-			name = "DockerCompose",
-		},
-		dockerfile = {
-			icon = "󰡨",
-			color = "#3146e0",
-			name = "Dockerfile",
-		},
-		envfile = {
-			icon = "",
-			color = "#6f747a",
-			name = "Environment",
-		},
-		log = {
-			icon = "",
-			color = "#81e043",
-			name = "Log",
-		},
-		yaml = {
-			icon = "",
-			color = "#b553db",
-			name = "Yaml",
-		},
-		bak = {
-			icon = "󰁯",
-			color = "#ccccb4",
-			name = "Backup",
-		},
-		glsl = {
-			icon = "󰯿",
-			color = "#75bf7b",
-			name = "OpenGL",
-		},
-		cmake = {
-			icon = "",
-			color = "#e0db75",
-			name = "CMake",
-		},
-	},
 	color_icons = true,
 	default = true,
-	strict = false,
-	override_by_filename = {
-		[".gitignore"] = {
-			icon = "",
-			color = "#f1502f",
-			name = "Gitignore",
-		},
-		[".gitmodules"] = {
-			icon = "",
-			color = "#0427c4",
-			name = "Gitmodules",
-		},
-		[".clangd"] = {
-			icon = "",
-			color = "#99b8c7",
-			name = "Clangfile",
-		},
-	},
+	strict = true,
+	override = {},
+	override_by_filename = {},
 })
