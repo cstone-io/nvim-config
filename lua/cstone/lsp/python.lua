@@ -17,11 +17,10 @@ local M = {}
 function M.set_lsp_for_conda_env(env_name)
 	local python_path = get_python_path_for_conda_env(env_name)
 
+	local handlers = require("cstone.lsp.handlers")
 	-- Configure the LSP server with the detected Python path
 	lspconfig.pyright.setup({
-		on_attach = function(client, bufnr)
-			-- Other on_attach logic...
-		end,
+		on_attach = handlers.on_attach,
 		settings = {
 			python = {
 				pythonPath = python_path,
