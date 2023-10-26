@@ -43,7 +43,7 @@ require("formatter").setup({
 			function()
 				return {
 					exe = "clang-format",
-					args = { "-i", "--style=Google" }, -- You can change "--style=Google" to another preset or provide a .clang-format file
+          args = { "-i", "--style=Google" }, -- You can change "--style=Google" to another preset or provide a .clang-format file
 					stdin = false,
 				}
 			end,
@@ -104,9 +104,10 @@ require("formatter").setup({
 	},
 })
 
-vim.cmd([[
+vim.cmd (
+  [[
 augroup formatautogroup
   autocmd!
-  autocmd BufWritePost * FormatWrite
+  autocmd BufWritePre * FormatWrite
 augroup END
 ]])

@@ -76,7 +76,8 @@ return packer.startup(function(use)
 	-- Formatters
 	use("ckipp01/stylua-nvim") -- Lua
 	use({ "prettier/vim-prettier", run = "npm i -g --frozen-lockfile --production" }) -- HTML, CSS, Typescript
-	use("averms/black-nvim")
+	use("averms/black-nvim") -- Python
+  use("preservim/vim-pencil") -- Text wrapping
 
 	-- Telescope (and extensions)
 	use("nvim-telescope/telescope.nvim")
