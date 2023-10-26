@@ -41,6 +41,10 @@ keymap("n", "<S-h>", ":bprevious<CR>", opts)
 keymap("n", "<A-j>", ":m .+1<CR>==", opts)
 keymap("n", "<A-k>", ":m .-2<CR>==", opts)
 
+-- Move and wrap text
+keymap("n", "<leader><CR>", "i<CR><ESC>$", opts)
+keymap("n", "<leader><leader>", "gq<CR>", opts)
+
 -- Clipboard
 keymap("n", "<leader>y", 'yy"+', opts)
 keymap("n", "<leader>p", '"+p', opts)
