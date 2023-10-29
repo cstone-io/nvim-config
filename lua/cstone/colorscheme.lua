@@ -14,7 +14,7 @@ function Recolor(color)
 	vim.api.nvim_set_hl(0, "PmenuSel", { bg = "none", fg = "#ffffff" })
 
 	-- override comment colorscheme
-	vim.api.nvim_set_hl(0, "Comment", { fg = "#a5cce8" })
+	vim.api.nvim_set_hl(0, "Comment", { fg = "#c7c7c7" })
 end
 
 Recolor(default)
