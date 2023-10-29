@@ -110,3 +110,10 @@ augroup formatautogroup
   autocmd BufWritePost * FormatWrite
 augroup END
 ]])
+
+vim.cmd([[
+augroup SetHeaderFiletype
+  autocmd!
+  autocmd BufRead,BufNewFile *.h set filetype=c
+augroup END
+]])
