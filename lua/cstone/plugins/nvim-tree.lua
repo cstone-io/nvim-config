@@ -51,7 +51,7 @@ nvim_tree.setup({
 		root_folder_label = ":~:s?$?/..?",
 		indent_width = 2,
 		special_files = { "Cargo.toml", "Makefile", "README.md", "readme.md" },
-		symlink_destination = true,
+		symlink_destination = false,
 		highlight_diagnostics = false,
 		highlight_git = false,
 		highlight_opened_files = "none",
@@ -97,7 +97,7 @@ nvim_tree.setup({
 			},
 			glyphs = {
 				default = "",
-				symlink = "",
+				symlink = "",
 				bookmark = "󰆤",
 				modified = "●",
 				folder = {

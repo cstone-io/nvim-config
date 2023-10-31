@@ -37,11 +37,23 @@ local custom_patterns = {
 			color = colors.magenta,
 			name = "DockerCompose",
 		},
+		eslint = {
+			patterns = { "^%.eslint.*$" },
+			icon = "",
+			color = colors.lilac,
+			name = "ESLint",
+		},
 		git = {
 			patterns = { "^%.gitignore$", "^%.gitmodules$" },
 			icon = "",
 			color = colors.orange,
 			name = "Gitignore",
+		},
+		prettier = {
+			patterns = { "^%.prettier.*$" },
+			icon = "",
+			color = colors.lemon,
+			name = "Prettier",
 		},
 		readme = {
 			patterns = { "^README%.md$" },
@@ -104,6 +116,12 @@ local custom_patterns = {
 			icon = "󰌆",
 			color = colors.lemon,
 			name = "Pemkey",
+		},
+		rc = {
+			patterns = { "^%..*%rc$" },
+			icon = "󱃲",
+			color = colors.slate,
+			name = "dotrc",
 		},
 		yaml = {
 			patterns = { "^.*%.yaml$", "^.*%.yml$" },
