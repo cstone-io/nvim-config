@@ -144,13 +144,11 @@ for _, priority_tier in pairs(custom_patterns) do
 	end
 end
 
-local function get_custom_pattern(name)
-	for _, priority_tier in pairs(custom_patterns) do
-		for _, data in pairs(priority_tier) do
-			for _, pattern in pairs(data.patterns) do
-				if name:find(pattern) then
-					return data
-				end
+local function get_custom_pattern(tier, name)
+	for _, data in pairs(tier) do
+		for _, pattern in pairs(data.patterns) do
+			if name:find(pattern) then
+				return data
 			end
 		end
 	end
@@ -160,7 +158,11 @@ end
 local original_get_icon = devicons.get_icon
 
 devicons.get_icon = function(name, ext, opts)
-	local match = get_custom_pattern(name)
+	local match = get_custom_pattern(custom_patterns.first_priority, name)
+	if match then
+		return match.icon, "DevIcon" .. match.name
+	end
+	match = get_custom_pattern(custom_patterns.second_priority, name)
 	if match then
 		return match.icon, "DevIcon" .. match.name
 	end
