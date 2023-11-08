@@ -8,15 +8,16 @@ local servers = {
 	"jsonls",
 	"yamlls",
 	"clangd",
+	"haskell-language-server",
 }
 
 local settings = {
 	ui = {
 		border = "none",
 		icons = {
-			package_installed = "◍",
-			package_pending = "◍",
-			package_uninstalled = "◍",
+			package_installed = "",
+			package_pending = "󰇘",
+			package_uninstalled = "",
 		},
 	},
 	log_level = vim.log.levels.INFO,
@@ -48,6 +49,11 @@ for _, server in pairs(servers) do
 	}
 
 	server = vim.split(server, "@")[1]
+
+	-- Haskell is weird...
+	if server == "haskell-language-server" then
+		server = "hls"
+	end
 
 	local require_ok, conf_opts = pcall(require, "cstone.lsp.settings." .. server)
 	if require_ok then

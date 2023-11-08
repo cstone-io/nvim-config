@@ -7,6 +7,7 @@ local function req(file)
 	require("cstone.lsp." .. file)
 end
 
+req("hls")
 req("mason")
 req("handlers")
 req("keymap")

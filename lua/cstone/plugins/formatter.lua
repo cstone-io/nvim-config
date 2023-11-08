@@ -94,6 +94,16 @@ require("formatter").setup({
 			end,
 		},
 
+		haskell = {
+			function()
+				return {
+					exe = "ormolu",
+					args = { "--mode=inplace" },
+					stdin = false,
+				}
+			end,
+		},
+
 		-- Use the special "*" filetype for defining formatter configurations on
 		-- any filetype
 		["*"] = {
