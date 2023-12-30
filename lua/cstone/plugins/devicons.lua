@@ -62,7 +62,7 @@ local custom_patterns = {
 			name = "README",
 		},
 		requirements = {
-			patterns = { "^requirements%.txt$", "^package%.json$" },
+			patterns = { "^requirements%.txt$", "^package%.json$", "^go%.mod$" },
 			icon = "",
 			color = colors.salmon,
 			name = "Requirements",
@@ -104,6 +104,12 @@ local custom_patterns = {
 			icon = "󰯿",
 			color = colors.lemon,
 			name = "OpenGL",
+		},
+		go = {
+			patterns = { "^.*%.go$" },
+			icon = "󰊭",
+			color = colors.turquoise,
+			name = "Go",
 		},
 		log = {
 			patterns = { "^.*%.log$" },

@@ -9,6 +9,7 @@ local servers = {
 	"yamlls",
 	"clangd",
 	"haskell-language-server",
+	"gopls",
 }
 
 local settings = {

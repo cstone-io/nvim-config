@@ -104,6 +104,16 @@ require("formatter").setup({
 			end,
 		},
 
+		go = {
+			function()
+				return {
+					exe = "gofmt",
+					args = { "-w", "-s" },
+					stdin = false,
+				}
+			end,
+		},
+
 		-- Use the special "*" filetype for defining formatter configurations on
 		-- any filetype
 		["*"] = {
