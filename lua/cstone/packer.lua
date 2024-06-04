@@ -96,6 +96,7 @@ return packer.startup(function(use)
 	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
 	use("nvim-treesitter/playground")
 	use("mbbill/undotree")
+	use("vrischmann/tree-sitter-templ")
 
 	-- Search / replace
 	use("roobert/search-replace.nvim")

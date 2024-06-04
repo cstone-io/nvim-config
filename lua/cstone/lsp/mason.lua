@@ -8,8 +8,9 @@ local servers = {
 	"jsonls",
 	"yamlls",
 	"clangd",
-	"haskell-language-server",
 	"gopls",
+	"templ",
+	"tailwindcss",
 }
 
 local settings = {

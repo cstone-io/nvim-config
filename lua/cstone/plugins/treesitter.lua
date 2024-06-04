@@ -63,3 +63,10 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 	pattern = ".env*",
 	callback = set_dotenv_highlighting,
 })
+
+-- Recognize Templ files
+vim.filetype.add({
+	extension = {
+		templ = "templ",
+	},
+})

@@ -49,6 +49,12 @@ local custom_patterns = {
 			color = colors.orange,
 			name = "Gitignore",
 		},
+		gosum = {
+			patterns = { "^go%.sum$" },
+			icon = "",
+			color = colors.slate,
+			name = "GoSum",
+		},
 		prettier = {
 			patterns = { "^%.prettier.*$" },
 			icon = "",
@@ -128,6 +134,12 @@ local custom_patterns = {
 			icon = "󱃲",
 			color = colors.slate,
 			name = "dotrc",
+		},
+		templ = {
+			patterns = { "^.*%.templ$" },
+			icon = "",
+			color = colors.teal,
+			name = "Templ",
 		},
 		yaml = {
 			patterns = { "^.*%.yaml$", "^.*%.yml$" },
