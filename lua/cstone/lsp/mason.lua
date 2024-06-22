@@ -10,6 +10,7 @@ local servers = {
 	"clangd",
 	"gopls",
 	"templ",
+	"htmx-lsp",
 	"tailwindcss",
 }
 
@@ -60,6 +61,29 @@ for _, server in pairs(servers) do
 	local require_ok, conf_opts = pcall(require, "cstone.lsp.settings." .. server)
 	if require_ok then
 		opts = vim.tbl_deep_extend("force", conf_opts, opts)
+	end
+
+	-- htmx-lsp is a custom server
+	local htmx_ok, htmx = pcall(require, "htmx")
+	if htmx_ok then
+		vim.api.nvim_create_autocmd({ "BufWritePre" }, { pattern = { "*.templ" }, callback = htmx.templ_format })
+	end
+
+	if server == "htmx-lsp" or server == "html" then
+		opts = vim.tbl_deep_extend("force", {
+			filetypes = { "html", "templ" },
+		}, opts)
+	end
+
+	if server == "tailwindcss" then
+		opts = vim.tbl_deep_extend("force", {
+			filetypes = { "templ", "html", "javascript", "typescript", "react" },
+			init_options = {
+				userLanguages = {
+					templ = "html",
+				},
+			},
+		}, opts)
 	end
 
 	lspconfig[server].setup(opts)
