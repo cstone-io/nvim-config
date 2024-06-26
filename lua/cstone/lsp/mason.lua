@@ -69,7 +69,13 @@ for _, server in pairs(servers) do
 		vim.api.nvim_create_autocmd({ "BufWritePre" }, { pattern = { "*.templ" }, callback = htmx.templ_format })
 	end
 
-	if server == "htmx-lsp" or server == "html" then
+	if server == "html" then
+		opts = vim.tbl_deep_extend("force", {
+			filetypes = { "html" },
+		}, opts)
+	end
+
+	if server == "htmx-lsp" then
 		opts = vim.tbl_deep_extend("force", {
 			filetypes = { "html", "templ" },
 		}, opts)
